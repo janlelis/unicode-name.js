@@ -1,0 +1,26 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Node v${{ matrix.node-version }} (${{ matrix.os }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 22
+          - 20
+          - 18
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npm test
+
