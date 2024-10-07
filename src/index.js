@@ -14,6 +14,7 @@ const HANGUL_FINAL_MAX = 28;
 /**
  * Generate name of Hangul syllables, see
  * https://en.wikipedia.org/wiki/Korean_language_and_computers#Hangul_syllables_block
+ * @private
  */
 function hangulDecomposition(codepoint) {
   const base = codepoint - HANGUL_START;
@@ -26,6 +27,7 @@ function hangulDecomposition(codepoint) {
 
 /**
  * Returns number in hexadecimal with at least four digits
+ * @private
  */
 function codepointHex(n) {
   return n.toString(16).toUpperCase().padStart(4, "0");
@@ -33,6 +35,7 @@ function codepointHex(n) {
 
 /**
  * Use codepoints instead of characters if preferred
+ * @private
  */
 function codepointToChar(codepoinOrNot) {
   if (Number.isInteger(codepoinOrNot)) {

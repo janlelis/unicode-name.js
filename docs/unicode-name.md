@@ -1,14 +1,7 @@
 ## Functions
 
 <dl>
-<dt><a href="#hangulDecomposition">hangulDecomposition()</a></dt>
-<dd><p>Generate name of Hangul syllables, see
-<a href="https://en.wikipedia.org/wiki/Korean_language_and_computers#Hangul_syllables_block">https://en.wikipedia.org/wiki/Korean_language_and_computers#Hangul_syllables_block</a></p>
-</dd>
-<dt><a href="#codepointHex">codepointHex()</a></dt>
-<dd><p>Returns number in hexadecimal with at least four digits</p>
-</dd>
-<dt><a href="#unicodeBaseName">unicodeBaseName(Single)</a> ⇒</dt>
+<dt><a href="#unicodeBaseName">unicodeBaseName(char)</a> ⇒</dt>
 <dd><p>Returns the name that has been assigned to a Unicode codepoint.</p>
 <p>Please note:
 Some common codepoints do not have a name (e.g. C0 control characters like \n)</p>
@@ -19,7 +12,7 @@ Some common codepoints do not have a name (e.g. C0 control characters like \n)</
 <li>unicodeReadableName(char) - Displays correct name or an applicable alias</li>
 </ul>
 </dd>
-<dt><a href="#unicodeCorrectName">unicodeCorrectName(Single)</a> ⇒</dt>
+<dt><a href="#unicodeCorrectName">unicodeCorrectName(char)</a> ⇒</dt>
 <dd><p>Returns the name that has been assigned to a Unicode codepoint, but if the codepoint
 has a correction alias, use this instead.</p>
 <p>Please note:
@@ -29,7 +22,7 @@ Some common codepoints do not have a name (e.g. C0 control characters like \n)</
 <li>unicodeReadableName(char) - Displays correct name or an applicable alias</li>
 </ul>
 </dd>
-<dt><a href="#unicodeAliases">unicodeAliases(Single)</a> ⇒</dt>
+<dt><a href="#unicodeAliases">unicodeAliases(char)</a> ⇒</dt>
 <dd><p>Returns the aliases that have been assigned to a Unicode codepoint.</p>
 <p>Aliases can be of these categories (multiple aliases possible):</p>
 <ul>
@@ -40,7 +33,7 @@ Some common codepoints do not have a name (e.g. C0 control characters like \n)</
 <li>abbreviation</li>
 </ul>
 </dd>
-<dt><a href="#unicodeType">unicodeType()</a></dt>
+<dt><a href="#unicodeType">unicodeType(char)</a> ⇒</dt>
 <dd><p>Determine the basic type of codepoints. Required to be able to get the
 Unicode label of a codepoint. This can be one of:</p>
 <ul>
@@ -53,14 +46,14 @@ Unicode label of a codepoint. This can be one of:</p>
 <li>Reserved</li>
 </ul>
 </dd>
-<dt><a href="#unicodeLabel">unicodeLabel(Single)</a> ⇒</dt>
+<dt><a href="#unicodeLabel">unicodeLabel(char)</a> ⇒</dt>
 <dd><p>Returns a label of a codepoint in the following format:
 <type-hex>, e.g. <control-0009> for the tab character or
 <noncharacter-FFFFF> for U+FFFFF</p>
 <p>It is only assigned to codepoints of a type other than
 &quot;Graphic&quot; or &quot;Format&quot;</p>
 </dd>
-<dt><a href="#unicodeReadableName">unicodeReadableName(Single)</a> ⇒</dt>
+<dt><a href="#unicodeReadableName">unicodeReadableName(char)</a> ⇒</dt>
 <dd><p>Returns the best readable representation of a codepoint.</p>
 <ol>
 <li>It is the corrected name of a the codepoint (if one exists)</li>
@@ -68,11 +61,17 @@ Unicode label of a codepoint. This can be one of:</p>
 <li>or it is the codepoint label</li>
 </ol>
 </dd>
-<dt><a href="#unicodeSequenceName">unicodeSequenceName()</a></dt>
+<dt><a href="#unicodeSequenceName">unicodeSequenceName(char)</a> ⇒</dt>
 <dd><p>Returns the name of a character that is made of a codepoint sequence (= more than
 one codepoint involved), if one exists.</p>
 </dd>
-<dt><a href="#unicodeName">unicodeName()</a></dt>
+<dt><a href="#unicodeQualifiedSequenceName">unicodeQualifiedSequenceName(char)</a> ⇒</dt>
+<dd><p>Returns the name of a character that is made of a codepoint sequence (= more than
+one codepoint involved), if one exists.</p>
+<p>Differently from unicodeSequenceName(char), it will only consider Emoji ZWJ sequences
+that are fully qualified, meaning they all required variation selectors (VS16) in place</p>
+</dd>
+<dt><a href="#unicodeName">unicodeName(char)</a> ⇒</dt>
 <dd><p>Returns the best name for the Unicode character (codepoint or codepoint sequence).</p>
 <p>At first, it will check if the codepoint sequence has a name, e.g. for
 Emoji that are build up using multiple codepoints using unicodeSequenceName(char)</p>
@@ -81,22 +80,9 @@ the best name for that codepoint.</p>
 </dd>
 </dl>
 
-<a name="hangulDecomposition"></a>
-
-## hangulDecomposition()
-Generate name of Hangul syllables, see
-https://en.wikipedia.org/wiki/Korean_language_and_computers#Hangul_syllables_block
-
-**Kind**: global function  
-<a name="codepointHex"></a>
-
-## codepointHex()
-Returns number in hexadecimal with at least four digits
-
-**Kind**: global function  
 <a name="unicodeBaseName"></a>
 
-## unicodeBaseName(Single) ⇒
+## unicodeBaseName(char) ⇒
 Returns the name that has been assigned to a Unicode codepoint.
 
 Please note:
@@ -112,11 +98,11 @@ Also see:
 
 | Param | Description |
 | --- | --- |
-| Single | character string |
+| char | Single character string or codepoint |
 
 <a name="unicodeCorrectName"></a>
 
-## unicodeCorrectName(Single) ⇒
+## unicodeCorrectName(char) ⇒
 Returns the name that has been assigned to a Unicode codepoint, but if the codepoint
 has a correction alias, use this instead.
 
@@ -131,11 +117,11 @@ Also see:
 
 | Param | Description |
 | --- | --- |
-| Single | character string |
+| char | Single character string or codepoint |
 
 <a name="unicodeAliases"></a>
 
-## unicodeAliases(Single) ⇒
+## unicodeAliases(char) ⇒
 Returns the aliases that have been assigned to a Unicode codepoint.
 
 Aliases can be of these categories (multiple aliases possible):
@@ -151,11 +137,11 @@ Aliases can be of these categories (multiple aliases possible):
 
 | Param | Description |
 | --- | --- |
-| Single | character string |
+| char | Single character string or codepoint |
 
 <a name="unicodeType"></a>
 
-## unicodeType()
+## unicodeType(char) ⇒
 Determine the basic type of codepoints. Required to be able to get the
 Unicode label of a codepoint. This can be one of:
 
@@ -168,9 +154,15 @@ Unicode label of a codepoint. This can be one of:
 - Reserved
 
 **Kind**: global function  
+**Returns**: Codepoint type  
+
+| Param | Description |
+| --- | --- |
+| char | Single character string or codepoint |
+
 <a name="unicodeLabel"></a>
 
-## unicodeLabel(Single) ⇒
+## unicodeLabel(char) ⇒
 Returns a label of a codepoint in the following format:
 <type-hex>, e.g. <control-0009> for the tab character or
 <noncharacter-FFFFF> for U+FFFFF
@@ -183,11 +175,11 @@ It is only assigned to codepoints of a type other than
 
 | Param | Description |
 | --- | --- |
-| Single | character string |
+| char | Single character string or codepoint |
 
 <a name="unicodeReadableName"></a>
 
-## unicodeReadableName(Single) ⇒
+## unicodeReadableName(char) ⇒
 Returns the best readable representation of a codepoint.
 
 1) It is the corrected name of a the codepoint (if one exists)
@@ -199,18 +191,40 @@ Returns the best readable representation of a codepoint.
 
 | Param | Description |
 | --- | --- |
-| Single | character string |
+| char | Single character string or codepoint |
 
 <a name="unicodeSequenceName"></a>
 
-## unicodeSequenceName()
+## unicodeSequenceName(char) ⇒
 Returns the name of a character that is made of a codepoint sequence (= more than
 one codepoint involved), if one exists.
 
 **Kind**: global function  
+**Returns**: Unicode sequence name  
+
+| Param | Description |
+| --- | --- |
+| char | Single character string made of multiple codepoints |
+
+<a name="unicodeQualifiedSequenceName"></a>
+
+## unicodeQualifiedSequenceName(char) ⇒
+Returns the name of a character that is made of a codepoint sequence (= more than
+one codepoint involved), if one exists.
+
+Differently from unicodeSequenceName(char), it will only consider Emoji ZWJ sequences
+that are fully qualified, meaning they all required variation selectors (VS16) in place
+
+**Kind**: global function  
+**Returns**: Unicode sequence name  
+
+| Param | Description |
+| --- | --- |
+| char | Single character string made of multiple codepoints |
+
 <a name="unicodeName"></a>
 
-## unicodeName()
+## unicodeName(char) ⇒
 Returns the best name for the Unicode character (codepoint or codepoint sequence).
 
 At first, it will check if the codepoint sequence has a name, e.g. for
@@ -220,3 +234,9 @@ If none is found, will use the unicodeReadableName(char) function to retrieve
 the best name for that codepoint.
 
 **Kind**: global function  
+**Returns**: Name of character  
+
+| Param | Description |
+| --- | --- |
+| char | Single character string or codepoint |
+
