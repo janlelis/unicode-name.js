@@ -56,8 +56,8 @@ function codepointToChar(codepoinOrNot) {
  *                              fallbacks to this method
  * - unicodeReadableName(char) - Displays correct name or an applicable alias
  *
- * @param char Single character string or codepoint
- * @returns Name of character or undefined
+ * @param {string|number} char Single character string or codepoint
+ * @returns {string|undefined} Name of character or undefined
  */
 export function unicodeBaseName(char) {
   char = codepointToChar(char);
@@ -103,8 +103,8 @@ export function unicodeBaseName(char) {
  * Also see:
  * - unicodeReadableName(char) - Displays correct name or an applicable alias
  *
- * @param char Single character string or codepoint
- * @returns Corrected name of character or undefined
+ * @param {string|number} char Single character string or codepoint
+ * @returns {string|undefined} Corrected name of character or undefined
  */
 export function unicodeCorrectName(char) {
   char = codepointToChar(char);
@@ -134,8 +134,8 @@ export function unicodeCorrectName(char) {
  * - alternate
  * - abbreviation
  *
- * @param char Single character string or codepoint
- * @returns Object containing aliases for this Unicode codepoint
+ * @param {string|number} char Single character string or codepoint
+ * @returns {string|undefined} Object containing aliases for this Unicode codepoint
  */
 export function unicodeAliases(char) {
   char = codepointToChar(char);
@@ -159,8 +159,8 @@ export function unicodeAliases(char) {
  * - Noncharacter
  * - Reserved
  *
- * @param char Single character string or codepoint
- * @returns Codepoint type
+ * @param {string|number} char Single character string or codepoint
+ * @returns {string|undefined} Codepoint type
  */
 export function unicodeType(char) {
   char = codepointToChar(char);
@@ -189,8 +189,8 @@ export function unicodeType(char) {
  * It is only assigned to codepoints of a type other than
  * "Graphic" or "Format"
  *
- * @param char Single character string or codepoint
- * @returns A generic label for this codepoint
+ * @param {string|number} char Single character string or codepoint
+ * @returns {string|undefined} A generic label for this codepoint
  */
 export function unicodeLabel(char) {
   char = codepointToChar(char);
@@ -216,8 +216,8 @@ export function unicodeLabel(char) {
  * 2) or it is an appropriate aliase (if one exists)
  * 3) or it is the codepoint label
  *
- * @param char Single character string or codepoint
- * @returns Unicode name, alias, or label for this character
+ * @param {string|number} char Single character string or codepoint
+ * @returns {string|undefined} Unicode name, alias, or label for this character
  */
 export function unicodeReadableName(char) {
   const correctName = unicodeCorrectName(char);
@@ -242,8 +242,8 @@ export function unicodeReadableName(char) {
  * Returns the name of a character that is made of a codepoint sequence (= more than
  * one codepoint involved), if one exists.
  *
- * @param char Single character string made of multiple codepoints
- * @returns Unicode sequence name
+ * @param {string} char Single character string made of multiple codepoints
+ * @returns {string|undefined} Unicode sequence name
  */
 export function unicodeSequenceName(char) {
   if ((typeof char !== "string" && !(char instanceof String)) || char === "") {
@@ -260,8 +260,8 @@ export function unicodeSequenceName(char) {
  * Differently from unicodeSequenceName(char), it will only consider Emoji ZWJ sequences
  * that are fully qualified, meaning they all required variation selectors (VS16) in place
  *
- * @param char Single character string made of multiple codepoints
- * @returns Unicode sequence name
+ * @param {string} char Single character string made of multiple codepoints
+ * @returns {string|undefined} Unicode sequence name
  */
 export function unicodeQualifiedSequenceName(char) {
   if ((typeof char !== "string" && !(char instanceof String)) || char === "") {
@@ -280,8 +280,8 @@ export function unicodeQualifiedSequenceName(char) {
  * If none is found, will use the unicodeReadableName(char) function to retrieve
  * the best name for that codepoint.
  *
- * @param char Single character string or codepoint
- * @returns Name of character
+ * @param {string|number} char Single character string or codepoint
+ * @returns {string|undefined} Name of character
  */
 export function unicodeName(char) {
   return unicodeSequenceName(char) || unicodeReadableName(char);
