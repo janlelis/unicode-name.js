@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+### 1.0.2
+
+- Fix regressions in 1.0.1: Squared CJK
+- Fix regressions in 1.0.1: Non-ASCII sequence names
+
 ### 1.0.1
 
 - Optimize index size by removing ranges that have codepoints embedded

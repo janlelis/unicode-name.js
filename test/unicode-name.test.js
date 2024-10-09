@@ -23,6 +23,7 @@ describe("unicodeBaseName(char)", () => {
 
   it("works with CJK unified ideographs", () => {
     expect(unicodeBaseName("丁")).toBe("CJK UNIFIED IDEOGRAPH-4E01");
+    expect(unicodeBaseName("🈶")).toBe("SQUARED CJK UNIFIED IDEOGRAPH-6709");
   });
 
   it("works with Hangul syllables", () => {
@@ -147,6 +148,7 @@ describe("unicodeSequenceName(char)", () => {
     expect(unicodeSequenceName("நி")).toBe("TAMIL SYLLABLE NI");
     expect(unicodeSequenceName("🇺🇳")).toBe("FLAG: UNITED NATIONS");
     expect(unicodeSequenceName("🏴󠁧󠁢󠁳󠁣󠁴󠁿")).toBe("FLAG: SCOTLAND");
+    expect(unicodeSequenceName("🇦🇽")).toBe("FLAG: ÅLAND ISLANDS");
     expect(unicodeSequenceName("🧑‍🦱")).toBe("PERSON: CURLY HAIR"); // Emoji 12.1
     expect(unicodeSequenceName("👨‍🍼")).toBe("MAN FEEDING BABY"); // Emoji 13.0
     expect(unicodeSequenceName("❤️‍🔥")).toBe("HEART ON FIRE"); // Emoji 13.1
