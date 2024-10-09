@@ -21,7 +21,7 @@ describe("unicodeBaseName(char)", () => {
     expect(unicodeBaseName("𜱼")).toBe("SQUARE SPIRAL FROM TOP LEFT"); // Unicode 16.0
   });
 
-  it("works with CJK ideographs", () => {
+  it("works with CJK unified ideographs", () => {
     expect(unicodeBaseName("丁")).toBe("CJK UNIFIED IDEOGRAPH-4E01");
   });
 
@@ -31,6 +31,14 @@ describe("unicodeBaseName(char)", () => {
     expect(unicodeBaseName("개")).toBe("HANGUL SYLLABLE GAE");
     expect(unicodeBaseName("갱")).toBe("HANGUL SYLLABLE GAENG");
     expect(unicodeBaseName("돫")).toBe("HANGUL SYLLABLE DWALB");
+  });
+
+  it("works with some ranges that have the codepoint embedded", () => {
+    expect(unicodeBaseName("𔏵")).toBe("EGYPTIAN HIEROGLYPH-143F5");
+    expect(unicodeBaseName("𘰒")).toBe("KHITAN SMALL SCRIPT CHARACTER-18C12");
+    expect(unicodeBaseName("𘴀")).toBe("TANGUT IDEOGRAPH-18D00");
+    expect(unicodeBaseName("𛅱")).toBe("NUSHU CHARACTER-1B171");
+    expect(unicodeBaseName("𧃒")).toBe("CJK COMPATIBILITY IDEOGRAPH-2F9B1");
   });
 
   it("will return undefined for characters without name", () => {

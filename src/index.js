@@ -3,8 +3,14 @@ import UNICODE_DATA_NAME from "./name.js";
 import UNICODE_DATA_SEQUENCE_NAME from "./sequence_name.js";
 
 const { TYPES, TYPE_NAMES, OFFSETS } = UNICODE_DATA_TYPE;
-const { NAMES, ALIASES, CJK, JAMO } = UNICODE_DATA_NAME;
+
+const { NAMES, ALIASES, CP_RANGES, JAMO } = UNICODE_DATA_NAME;
+const NAMES_WORDS = UNICODE_DATA_NAME.COMMON_WORDS;
+const NAMES_REPLACE_BASE = UNICODE_DATA_NAME.REPLACE_BASE;
+
 const { SEQUENCES, SEQUENCES_NOT_QUALIFIED } = UNICODE_DATA_SEQUENCE_NAME;
+const SEQUENCES_WORDS = UNICODE_DATA_SEQUENCE_NAME.COMMON_WORDS;
+const SEQUENCES_REPLACE_BASE = UNICODE_DATA_SEQUENCE_NAME.REPLACE_BASE;
 
 const HANGUL_START = 44032;
 const HANGUL_END = 55203;
@@ -23,6 +29,24 @@ function hangulDecomposition(codepoint) {
   const initial = Math.floor(base / HANGUL_MEDIAL_MAX);
 
   return `${JAMO.INITIAL[initial]}${JAMO.MEDIAL[medial]}${JAMO.FINAL[final]}`;
+}
+
+/**
+ * Insert replaced words
+ * @private
+ */
+function insertWords(rawName, words, replaceBase) {
+  return [...rawName]
+    .map((char) => {
+      const codepoint = char.codePointAt(0);
+      if (codepoint < replaceBase) {
+        return char;
+      } else {
+        return `${words[codepoint - replaceBase]} `;
+      }
+    })
+    .join("")
+    .trim();
 }
 
 /**
@@ -68,8 +92,8 @@ export function unicodeBaseName(char) {
 
   const res = NAMES[char];
 
-  if (res) {
-    return res;
+  if (res !== undefined) {
+    return insertWords(res, NAMES_WORDS, NAMES_REPLACE_BASE);
   }
 
   if ([...char][1]) {
@@ -78,12 +102,12 @@ export function unicodeBaseName(char) {
 
   const codepoint = char.codePointAt(0);
 
-  if (
-    CJK.some(
-      (cjk_range) => codepoint >= cjk_range[0] && codepoint <= cjk_range[1]
-    )
-  ) {
-    return `CJK UNIFIED IDEOGRAPH-${codepointHex(codepoint)}`;
+  for (const [prefix, ranges] of Object.entries(CP_RANGES)) {
+    if (
+      ranges.some((range) => codepoint >= range[0] && codepoint <= range[1])
+    ) {
+      return `${prefix}${codepointHex(codepoint)}`;
+    }
   }
 
   if (codepoint >= HANGUL_START && codepoint <= HANGUL_END) {
@@ -250,7 +274,12 @@ export function unicodeSequenceName(char) {
     return undefined;
   }
 
-  return SEQUENCES[char] || SEQUENCES_NOT_QUALIFIED[char];
+  const res = SEQUENCES[char] || SEQUENCES_NOT_QUALIFIED[char];
+  if (res === undefined) {
+    return undefined;
+  }
+
+  return insertWords(res, SEQUENCES_WORDS, SEQUENCES_REPLACE_BASE);
 }
 
 /**
@@ -268,7 +297,12 @@ export function unicodeQualifiedSequenceName(char) {
     return undefined;
   }
 
-  return SEQUENCES[char];
+  const res = SEQUENCES[char];
+  if (res === undefined) {
+    return undefined;
+  }
+
+  return insertWords(res, SEQUENCES_WORDS, SEQUENCES_REPLACE_BASE);
 }
 
 /**
