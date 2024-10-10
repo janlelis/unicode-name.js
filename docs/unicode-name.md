@@ -1,7 +1,7 @@
 ## Functions
 
 <dl>
-<dt><a href="#unicodeBaseName">unicodeBaseName(char)</a> ⇒</dt>
+<dt><a href="#unicodeBaseName">unicodeBaseName(char)</a> ⇒ <code>string</code> | <code>undefined</code></dt>
 <dd><p>Returns the name that has been assigned to a Unicode codepoint.</p>
 <p>Please note:
 Some common codepoints do not have a name (e.g. C0 control characters like \n)</p>
@@ -12,7 +12,7 @@ Some common codepoints do not have a name (e.g. C0 control characters like \n)</
 <li>unicodeReadableName(char) - Displays correct name or an applicable alias</li>
 </ul>
 </dd>
-<dt><a href="#unicodeCorrectName">unicodeCorrectName(char)</a> ⇒</dt>
+<dt><a href="#unicodeCorrectName">unicodeCorrectName(char)</a> ⇒ <code>string</code> | <code>undefined</code></dt>
 <dd><p>Returns the name that has been assigned to a Unicode codepoint, but if the codepoint
 has a correction alias, use this instead.</p>
 <p>Please note:
@@ -22,7 +22,7 @@ Some common codepoints do not have a name (e.g. C0 control characters like \n)</
 <li>unicodeReadableName(char) - Displays correct name or an applicable alias</li>
 </ul>
 </dd>
-<dt><a href="#unicodeAliases">unicodeAliases(char)</a> ⇒</dt>
+<dt><a href="#unicodeAliases">unicodeAliases(char)</a> ⇒ <code>string</code> | <code>undefined</code></dt>
 <dd><p>Returns the aliases that have been assigned to a Unicode codepoint.</p>
 <p>Aliases can be of these categories (multiple aliases possible):</p>
 <ul>
@@ -33,7 +33,7 @@ Some common codepoints do not have a name (e.g. C0 control characters like \n)</
 <li>abbreviation</li>
 </ul>
 </dd>
-<dt><a href="#unicodeType">unicodeType(char)</a> ⇒</dt>
+<dt><a href="#unicodeType">unicodeType(char)</a> ⇒ <code>string</code> | <code>undefined</code></dt>
 <dd><p>Determine the basic type of codepoints. Required to be able to get the
 Unicode label of a codepoint. This can be one of:</p>
 <ul>
@@ -46,14 +46,14 @@ Unicode label of a codepoint. This can be one of:</p>
 <li>Reserved</li>
 </ul>
 </dd>
-<dt><a href="#unicodeLabel">unicodeLabel(char)</a> ⇒</dt>
+<dt><a href="#unicodeLabel">unicodeLabel(char)</a> ⇒ <code>string</code> | <code>undefined</code></dt>
 <dd><p>Returns a label of a codepoint in the following format:
 <type-hex>, e.g. <control-0009> for the tab character or
 <noncharacter-FFFFF> for U+FFFFF</p>
 <p>It is only assigned to codepoints of a type other than
 &quot;Graphic&quot; or &quot;Format&quot;</p>
 </dd>
-<dt><a href="#unicodeReadableName">unicodeReadableName(char)</a> ⇒</dt>
+<dt><a href="#unicodeReadableName">unicodeReadableName(char)</a> ⇒ <code>string</code> | <code>undefined</code></dt>
 <dd><p>Returns the best readable representation of a codepoint.</p>
 <ol>
 <li>It is the corrected name of a the codepoint (if one exists)</li>
@@ -61,17 +61,17 @@ Unicode label of a codepoint. This can be one of:</p>
 <li>or it is the codepoint label</li>
 </ol>
 </dd>
-<dt><a href="#unicodeSequenceName">unicodeSequenceName(char)</a> ⇒</dt>
+<dt><a href="#unicodeSequenceName">unicodeSequenceName(char)</a> ⇒ <code>string</code> | <code>undefined</code></dt>
 <dd><p>Returns the name of a character that is made of a codepoint sequence (= more than
 one codepoint involved), if one exists.</p>
 </dd>
-<dt><a href="#unicodeQualifiedSequenceName">unicodeQualifiedSequenceName(char)</a> ⇒</dt>
+<dt><a href="#unicodeQualifiedSequenceName">unicodeQualifiedSequenceName(char)</a> ⇒ <code>string</code> | <code>undefined</code></dt>
 <dd><p>Returns the name of a character that is made of a codepoint sequence (= more than
 one codepoint involved), if one exists.</p>
 <p>Differently from unicodeSequenceName(char), it will only consider Emoji ZWJ sequences
 that are fully qualified, meaning they all required variation selectors (VS16) in place</p>
 </dd>
-<dt><a href="#unicodeName">unicodeName(char)</a> ⇒</dt>
+<dt><a href="#unicodeName">unicodeName(char)</a> ⇒ <code>string</code> | <code>undefined</code></dt>
 <dd><p>Returns the best name for the Unicode character (codepoint or codepoint sequence).</p>
 <p>At first, it will check if the codepoint sequence has a name, e.g. for
 Emoji that are build up using multiple codepoints using unicodeSequenceName(char)</p>
@@ -82,7 +82,7 @@ the best name for that codepoint.</p>
 
 <a name="unicodeBaseName"></a>
 
-## unicodeBaseName(char) ⇒
+## unicodeBaseName(char) ⇒ <code>string</code> \| <code>undefined</code>
 Returns the name that has been assigned to a Unicode codepoint.
 
 Please note:
@@ -94,15 +94,15 @@ Also see:
 - unicodeReadableName(char) - Displays correct name or an applicable alias
 
 **Kind**: global function  
-**Returns**: Name of character or undefined  
+**Returns**: <code>string</code> \| <code>undefined</code> - Name of character or undefined  
 
-| Param | Description |
-| --- | --- |
-| char | Single character string or codepoint |
+| Param | Type | Description |
+| --- | --- | --- |
+| char | <code>string</code> \| <code>number</code> | Single character string or codepoint |
 
 <a name="unicodeCorrectName"></a>
 
-## unicodeCorrectName(char) ⇒
+## unicodeCorrectName(char) ⇒ <code>string</code> \| <code>undefined</code>
 Returns the name that has been assigned to a Unicode codepoint, but if the codepoint
 has a correction alias, use this instead.
 
@@ -113,15 +113,15 @@ Also see:
 - unicodeReadableName(char) - Displays correct name or an applicable alias
 
 **Kind**: global function  
-**Returns**: Corrected name of character or undefined  
+**Returns**: <code>string</code> \| <code>undefined</code> - Corrected name of character or undefined  
 
-| Param | Description |
-| --- | --- |
-| char | Single character string or codepoint |
+| Param | Type | Description |
+| --- | --- | --- |
+| char | <code>string</code> \| <code>number</code> | Single character string or codepoint |
 
 <a name="unicodeAliases"></a>
 
-## unicodeAliases(char) ⇒
+## unicodeAliases(char) ⇒ <code>string</code> \| <code>undefined</code>
 Returns the aliases that have been assigned to a Unicode codepoint.
 
 Aliases can be of these categories (multiple aliases possible):
@@ -133,15 +133,15 @@ Aliases can be of these categories (multiple aliases possible):
 - abbreviation
 
 **Kind**: global function  
-**Returns**: Object containing aliases for this Unicode codepoint  
+**Returns**: <code>string</code> \| <code>undefined</code> - Object containing aliases for this Unicode codepoint  
 
-| Param | Description |
-| --- | --- |
-| char | Single character string or codepoint |
+| Param | Type | Description |
+| --- | --- | --- |
+| char | <code>string</code> \| <code>number</code> | Single character string or codepoint |
 
 <a name="unicodeType"></a>
 
-## unicodeType(char) ⇒
+## unicodeType(char) ⇒ <code>string</code> \| <code>undefined</code>
 Determine the basic type of codepoints. Required to be able to get the
 Unicode label of a codepoint. This can be one of:
 
@@ -154,15 +154,15 @@ Unicode label of a codepoint. This can be one of:
 - Reserved
 
 **Kind**: global function  
-**Returns**: Codepoint type  
+**Returns**: <code>string</code> \| <code>undefined</code> - Codepoint type  
 
-| Param | Description |
-| --- | --- |
-| char | Single character string or codepoint |
+| Param | Type | Description |
+| --- | --- | --- |
+| char | <code>string</code> \| <code>number</code> | Single character string or codepoint |
 
 <a name="unicodeLabel"></a>
 
-## unicodeLabel(char) ⇒
+## unicodeLabel(char) ⇒ <code>string</code> \| <code>undefined</code>
 Returns a label of a codepoint in the following format:
 <type-hex>, e.g. <control-0009> for the tab character or
 <noncharacter-FFFFF> for U+FFFFF
@@ -171,15 +171,15 @@ It is only assigned to codepoints of a type other than
 "Graphic" or "Format"
 
 **Kind**: global function  
-**Returns**: A generic label for this codepoint  
+**Returns**: <code>string</code> \| <code>undefined</code> - A generic label for this codepoint  
 
-| Param | Description |
-| --- | --- |
-| char | Single character string or codepoint |
+| Param | Type | Description |
+| --- | --- | --- |
+| char | <code>string</code> \| <code>number</code> | Single character string or codepoint |
 
 <a name="unicodeReadableName"></a>
 
-## unicodeReadableName(char) ⇒
+## unicodeReadableName(char) ⇒ <code>string</code> \| <code>undefined</code>
 Returns the best readable representation of a codepoint.
 
 1) It is the corrected name of a the codepoint (if one exists)
@@ -187,28 +187,28 @@ Returns the best readable representation of a codepoint.
 3) or it is the codepoint label
 
 **Kind**: global function  
-**Returns**: Unicode name, alias, or label for this character  
+**Returns**: <code>string</code> \| <code>undefined</code> - Unicode name, alias, or label for this character  
 
-| Param | Description |
-| --- | --- |
-| char | Single character string or codepoint |
+| Param | Type | Description |
+| --- | --- | --- |
+| char | <code>string</code> \| <code>number</code> | Single character string or codepoint |
 
 <a name="unicodeSequenceName"></a>
 
-## unicodeSequenceName(char) ⇒
+## unicodeSequenceName(char) ⇒ <code>string</code> \| <code>undefined</code>
 Returns the name of a character that is made of a codepoint sequence (= more than
 one codepoint involved), if one exists.
 
 **Kind**: global function  
-**Returns**: Unicode sequence name  
+**Returns**: <code>string</code> \| <code>undefined</code> - Unicode sequence name  
 
-| Param | Description |
-| --- | --- |
-| char | Single character string made of multiple codepoints |
+| Param | Type | Description |
+| --- | --- | --- |
+| char | <code>string</code> | Single character string made of multiple codepoints |
 
 <a name="unicodeQualifiedSequenceName"></a>
 
-## unicodeQualifiedSequenceName(char) ⇒
+## unicodeQualifiedSequenceName(char) ⇒ <code>string</code> \| <code>undefined</code>
 Returns the name of a character that is made of a codepoint sequence (= more than
 one codepoint involved), if one exists.
 
@@ -216,15 +216,15 @@ Differently from unicodeSequenceName(char), it will only consider Emoji ZWJ sequ
 that are fully qualified, meaning they all required variation selectors (VS16) in place
 
 **Kind**: global function  
-**Returns**: Unicode sequence name  
+**Returns**: <code>string</code> \| <code>undefined</code> - Unicode sequence name  
 
-| Param | Description |
-| --- | --- |
-| char | Single character string made of multiple codepoints |
+| Param | Type | Description |
+| --- | --- | --- |
+| char | <code>string</code> | Single character string made of multiple codepoints |
 
 <a name="unicodeName"></a>
 
-## unicodeName(char) ⇒
+## unicodeName(char) ⇒ <code>string</code> \| <code>undefined</code>
 Returns the best name for the Unicode character (codepoint or codepoint sequence).
 
 At first, it will check if the codepoint sequence has a name, e.g. for
@@ -234,9 +234,9 @@ If none is found, will use the unicodeReadableName(char) function to retrieve
 the best name for that codepoint.
 
 **Kind**: global function  
-**Returns**: Name of character  
+**Returns**: <code>string</code> \| <code>undefined</code> - Name of character  
 
-| Param | Description |
-| --- | --- |
-| char | Single character string or codepoint |
+| Param | Type | Description |
+| --- | --- | --- |
+| char | <code>string</code> \| <code>number</code> | Single character string or codepoint |
 
