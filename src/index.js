@@ -8,7 +8,7 @@ const { NAMES, ALIASES, CP_RANGES, JAMO } = UNICODE_DATA_NAME;
 const NAMES_WORDS = UNICODE_DATA_NAME.COMMON_WORDS;
 const NAMES_REPLACE_BASE = UNICODE_DATA_NAME.REPLACE_BASE;
 
-const { SEQUENCES, SEQUENCES_NOT_QUALIFIED } = UNICODE_DATA_SEQUENCE_NAME;
+const { SEQUENCES, EMOJI_NOT_QUALIFIED } = UNICODE_DATA_SEQUENCE_NAME;
 const SEQUENCES_WORDS = UNICODE_DATA_SEQUENCE_NAME.COMMON_WORDS;
 const SEQUENCES_REPLACE_BASE = UNICODE_DATA_SEQUENCE_NAME.REPLACE_BASE;
 
@@ -274,12 +274,17 @@ export function unicodeSequenceName(char) {
     return undefined;
   }
 
-  const res = SEQUENCES[char] || SEQUENCES_NOT_QUALIFIED[char];
-  if (res === undefined) {
-    return undefined;
+  let res = SEQUENCES[char]
+  if(res) {
+    return insertWords(res, SEQUENCES_WORDS, SEQUENCES_REPLACE_BASE);
+  } else {
+    const fqe = EMOJI_NOT_QUALIFIED[char]
+    if(fqe) {
+      return insertWords(SEQUENCES[fqe], SEQUENCES_WORDS, SEQUENCES_REPLACE_BASE);
+    }
   }
 
-  return insertWords(res, SEQUENCES_WORDS, SEQUENCES_REPLACE_BASE);
+  return undefined;
 }
 
 /**

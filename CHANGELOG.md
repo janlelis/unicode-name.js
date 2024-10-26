@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+### 1.0.3 (unreleased)
+
+- Do not duplicate sequence names for non-fqe Emoji sequences in index,
+  instead map to fully-qualified first
+
 ### 1.0.2
 
 - Fix regressions in 1.0.1: Squared CJK
