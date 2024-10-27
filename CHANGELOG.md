@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+### 1.0.4
+
+- Fix missing names of first CJK Compatibility Ideographs block
+
 ### 1.0.3
 
 - Do not duplicate sequence names for non-fqe Emoji sequences in index,

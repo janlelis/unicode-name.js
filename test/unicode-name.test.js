@@ -40,6 +40,7 @@ describe("unicodeBaseName(char)", () => {
     expect(unicodeBaseName("𘴀")).toBe("TANGUT IDEOGRAPH-18D00");
     expect(unicodeBaseName("𛅱")).toBe("NUSHU CHARACTER-1B171");
     expect(unicodeBaseName("𧃒")).toBe("CJK COMPATIBILITY IDEOGRAPH-2F9B1");
+    expect(unicodeBaseName("兩")).toBe("CJK COMPATIBILITY IDEOGRAPH-F978");
   });
 
   it("will return undefined for characters without name", () => {
