@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+### 1.1.0
+
+- Unicode 17
+
 ### 1.0.4
 
 - Fix missing names of first CJK Compatibility Ideographs block
