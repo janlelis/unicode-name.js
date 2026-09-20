@@ -20,6 +20,7 @@ describe("unicodeBaseName(char)", () => {
     expect(unicodeBaseName("🝁")).toBe("ALCHEMICAL SYMBOL FOR QUICK LIME"); // Unicode 15.1
     expect(unicodeBaseName("𜱼")).toBe("SQUARE SPIRAL FROM TOP LEFT"); // Unicode 16.0
     expect(unicodeBaseName("𑶰")).toBe("TOLONG SIKI LETTER I"); // Unicode 17.0
+    expect(unicodeBaseName("𝉷")).toBe("MUSICAL SYMBOL G CLEF OTTAVA BASSA WITH C CLEF"); // Unicode 18.0
   });
 
   it("works with CJK unified ideographs", () => {

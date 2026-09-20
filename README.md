@@ -2,7 +2,7 @@
 
 Get the name of any Unicode character or Emoji in JavaScript! The purpose of this library is to return a useful name or label for any character/codepoint, even if it is special, unusual, or invalid. Also works with named characters constructed from multiple codepoints, like many Emoji characters.
 
-Unicode version: **17.0.0** (September 2025)
+Unicode version: **18.0.0** (September 2026)
 
 ## Install
 
@@ -28,6 +28,9 @@ unicodeName("A"); // "LATIN CAPITAL LETTER A"
 unicodeName("🚡"); // "AERIAL TRAMWAY"
 unicodeName("丁"); // "CJK UNIFIED IDEOGRAPH-4E01"
 unicodeName("한"); // "HANGUL SYLLABLE HAN"
+
+// Supports Unicode 18 (September 2026)
+unicodeName("𝉷"); // "MUSICAL SYMBOL G CLEF OTTAVA BASSA WITH C CLEF"
 
 // Supports Unicode 17 (September 2025)
 unicodeName("𑶰"); // "TOLONG SIKI LETTER I"
@@ -79,5 +82,5 @@ Additional, more specfic name functions (e.g. getting aliases for a codepoint) a
 
 ## MIT License
 
-- Copyright (c) 2024-2025 Jan Lelis <https://janlelis.com>. Released under the MIT license.
+- Copyright (c) 2024-2026 Jan Lelis <https://janlelis.com>. Released under the MIT license.
 - Unicode data: https://www.unicode.org/copyright.html#Exhibit1
