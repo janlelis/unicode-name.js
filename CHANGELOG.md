@@ -1,6 +1,6 @@
 ## CHANGELOG
 
-### 1.2.0 (unreleased)
+### 1.2.0
 
 - Unicode 18
 
